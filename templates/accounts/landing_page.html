@@ -1,0 +1,41 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block extrahead %}
+    <title>Advertio|Profile page</title>
+    <link rel="stylesheet" href="{% static 'css/card-utils.css' %}">
+
+{%  endblock %}
+{%  block content %}
+<main>
+    <section class="landing">
+    <div class="advert-list">
+    {% for advert in adverts %}
+    <div class="card-item" >
+        <div class="card-header">
+            {% if advert.get_thumbnail%}
+            <img src="{{advert.get_thumbnail.image.url}}" alt="not working boss">
+            {% endif %}
+        </div>
+        <div class="card-details">
+            <a href="{% url 'adverts:advert_details' advert.id %}" > <h3 class="item-title">{{advert.title}}</h3></a>
+            <div class="details-wrapper">
+                <p>{{advert.location}} </p>
+                <div class="price-arranged">
+                <p>{{advert.price}} </p>
+                <i class="far fa-heart wishlist-button">
+                    <span class="wishlist-tooltip">Add to wishlist </span>
+                </i>        
+            </div>
+
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+    </div>
+    
+    </section>
+
+
+</main>
+{% endblock %}
